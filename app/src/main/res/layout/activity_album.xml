@@ -9,7 +9,7 @@
         android:id="@+id/title_layout"
         style="@style/head_default"
         app:leftBtnIcon="@drawable/back"
-        app:titleTxt="我的图库" />
+        app:titleTxt="Gallery" />
 
     <com.customview.PagerSlidingTabStrip
         android:id="@+id/indicator"

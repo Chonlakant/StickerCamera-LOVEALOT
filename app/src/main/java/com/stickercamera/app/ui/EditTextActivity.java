@@ -55,7 +55,7 @@ public class EditTextActivity extends BaseActivity {
         if (StringUtils.isNotEmpty(defaultStr)) {
             contentView.setText(defaultStr);
             if (defaultStr.length() <= maxlength) {
-                numberTips.setText("你还可以输入" + (maxlength - defaultStr.length()) + "个字  ("
+                numberTips.setText("You can also enter" + (maxlength - defaultStr.length()) + "Characters  ("
                                    + defaultStr.length() + "/" + maxlength + ")");
             }
         }
@@ -91,15 +91,15 @@ public class EditTextActivity extends BaseActivity {
                                      editStart = contentView.getSelectionStart();
                                      editEnd = contentView.getSelectionEnd();
                                      if (s.toString().length() > maxlength) {
-                                         toast("你输入的字数已经超过了限制！", Toast.LENGTH_LONG);
+
                                          s.delete(editStart - 1, editEnd);
                                          int tempSelection = editStart;
                                          contentView.setText(s);
                                          contentView.setSelection(tempSelection);
                                      }
-                                     numberTips.setText("你还可以输入"
+                                     numberTips.setText("You can also enter"
                                                         + (maxlength - s.toString().length())
-                                                        + "个字  (" + s.toString().length() + "/"
+                                                        + "Characters  (" + s.toString().length() + "/"
                                                         + maxlength + ")");
                                  }
                              };

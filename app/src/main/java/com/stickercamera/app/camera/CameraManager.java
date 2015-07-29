@@ -41,6 +41,8 @@ public class CameraManager {
         context.startActivity(intent);
     }
 
+
+
     //判断图片是否需要裁剪
     public void processPhotoItem(Activity activity, PhotoItem photo) {
         Uri uri = photo.getImageUri().startsWith("file:") ? Uri.parse(photo
@@ -57,16 +59,17 @@ public class CameraManager {
         }
     }
 
+
     public void close() {
         for (Activity act : cameras) {
             try {
                 act.finish();
             } catch (Exception e) {
-
             }
         }
         cameras.clear();
     }
+
 
     public void addActivity(Activity act) {
         cameras.add(act);

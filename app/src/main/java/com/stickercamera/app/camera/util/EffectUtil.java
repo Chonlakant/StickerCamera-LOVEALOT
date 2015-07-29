@@ -26,12 +26,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-/**
- * Created by sky on 15/7/6.
- */
+
 public class EffectUtil {
 
-    public static List<Addon> addonList                 = new ArrayList<Addon>();
+    public static List<Addon> addonList = new ArrayList<Addon>();
     private static List<MyHighlightView> hightlistViews = new CopyOnWriteArrayList<MyHighlightView>();
 
     static {
@@ -43,6 +41,40 @@ public class EffectUtil {
         addonList.add(new Addon(R.drawable.sticker6));
         addonList.add(new Addon(R.drawable.sticker7));
         addonList.add(new Addon(R.drawable.sticker8));
+        addonList.add(new Addon(R.drawable.sticker9));
+        addonList.add(new Addon(R.drawable.sticker10));
+        addonList.add(new Addon(R.drawable.sticker11));
+        addonList.add(new Addon(R.drawable.sticker12));
+        addonList.add(new Addon(R.drawable.sticker13));
+        addonList.add(new Addon(R.drawable.sticker14));
+        addonList.add(new Addon(R.drawable.sticker15));
+        addonList.add(new Addon(R.drawable.sticker16));
+        addonList.add(new Addon(R.drawable.sticker17));
+        addonList.add(new Addon(R.drawable.sticker18));
+        addonList.add(new Addon(R.drawable.sticker19));
+        addonList.add(new Addon(R.drawable.sticker20));
+        addonList.add(new Addon(R.drawable.sticker21));
+        addonList.add(new Addon(R.drawable.sticker22));
+        addonList.add(new Addon(R.drawable.sticker23));
+        addonList.add(new Addon(R.drawable.sticker24));
+        addonList.add(new Addon(R.drawable.sticker25));
+        addonList.add(new Addon(R.drawable.sticker26));
+        addonList.add(new Addon(R.drawable.sticker27));
+        addonList.add(new Addon(R.drawable.sticker28));
+        addonList.add(new Addon(R.drawable.sticker29));
+        addonList.add(new Addon(R.drawable.sticker30));
+        addonList.add(new Addon(R.drawable.sticker31));
+        addonList.add(new Addon(R.drawable.sticker32));
+        addonList.add(new Addon(R.drawable.sticker33));
+        addonList.add(new Addon(R.drawable.sticker34));
+        addonList.add(new Addon(R.drawable.sticker35));
+        addonList.add(new Addon(R.drawable.sticker36));
+        addonList.add(new Addon(R.drawable.sticker37));
+        addonList.add(new Addon(R.drawable.sticker38));
+        addonList.add(new Addon(R.drawable.sticker39));
+        addonList.add(new Addon(R.drawable.sticker40));
+
+
     }
 
     public static void clear() {
@@ -129,7 +161,7 @@ public class EffectUtil {
         Matrix matrix = new Matrix(mImageMatrix);
         matrix.invert(matrix);
 
-        float[] pts = new float[] { x, y, x + cropWidth, y + cropHeight };
+        float[] pts = new float[]{x, y, x + cropWidth, y + cropHeight};
         MatrixUtils.mapPoints(matrix, pts);
 
         RectF cropRect = new RectF(pts[0], pts[1], pts[2], pts[3]);
@@ -175,6 +207,7 @@ public class EffectUtil {
 
     /**
      * 使标签在Overlay上可以移动
+     *
      * @param overlay
      * @param label
      */
@@ -204,7 +237,7 @@ public class EffectUtil {
         }
     }
 
-    private static void applyOnSave(Canvas mCanvas, ImageViewTouch processImage,MyHighlightView view) {
+    private static void applyOnSave(Canvas mCanvas, ImageViewTouch processImage, MyHighlightView view) {
 
         if (view != null && view.getContent() instanceof StickerDrawable) {
 

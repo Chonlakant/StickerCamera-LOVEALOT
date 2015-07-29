@@ -8,7 +8,7 @@
     <com.customview.CommonTitleBar
         android:id="@+id/title_layout"
         style="@style/head_default"
-        app:titleTxt="裁剪相片" />
+        app:titleTxt="Picture" />
 
     <View
         android:layout_width="fill_parent"
@@ -57,7 +57,7 @@
             android:src="@drawable/btn_crop_selector" />
         <TextView 
             android:id="@+id/cancel"
-            android:text="取消"
+            android:text="Cancel"
             android:textSize="24sp"
             android:textColor="@color/white"
             android:layout_margin="20dp"
@@ -68,7 +68,7 @@
             android:layout_toLeftOf="@id/btn_crop_type"/>
         <TextView 
             android:id="@+id/picked"
-            android:text="选取"
+            android:text="Select"
             android:textSize="24sp"
             android:layout_margin="20dp"
             android:textColor="@color/white"

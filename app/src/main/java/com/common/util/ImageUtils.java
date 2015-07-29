@@ -67,7 +67,7 @@ public class ImageUtils {
         return options.outHeight == options.outWidth;
     }
 
-    //保存图片文件
+    //Save the image file
     public static String saveToFile(String fileFolderStr, boolean isDir, Bitmap croppedImage) throws FileNotFoundException, IOException {
         File jpgFile;
         if (isDir) {
@@ -91,7 +91,6 @@ public class ImageUtils {
         IOUtil.closeStream(outputStream);
         return jpgFile.getPath();
     }
-
 
 
     //从文件中读取Bitmap

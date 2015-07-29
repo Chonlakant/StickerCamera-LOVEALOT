@@ -7,8 +7,10 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -45,6 +47,7 @@ import com.stickercamera.app.model.FeedItem;
 import com.stickercamera.app.model.TagItem;
 import com.stickercamera.app.ui.EditTextActivity;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -114,6 +117,7 @@ public class PhotoProcessActivity extends CameraBaseActivity {
             public void callback(Bitmap result) {
                 currentBitmap = result;
                 mGPUImageView.setImage(currentBitmap);
+                Log.e("fsfsdfsdfsdfsdf",currentBitmap+"");
             }
         });
 
@@ -201,13 +205,13 @@ public class PhotoProcessActivity extends CameraBaseActivity {
 
         });
         mImageView.setOnDrawableEventListener(wpEditListener);
-        mImageView.setSingleTapListener(()->{
-                emptyLabelView.updateLocation((int) mImageView.getmLastMotionScrollX(),
-                        (int) mImageView.getmLastMotionScrollY());
-                emptyLabelView.setVisibility(View.VISIBLE);
+        mImageView.setSingleTapListener(() -> {
+            emptyLabelView.updateLocation((int) mImageView.getmLastMotionScrollX(),
+                    (int) mImageView.getmLastMotionScrollY());
+            emptyLabelView.setVisibility(View.VISIBLE);
 
-                labelSelector.showToTop();
-                drawArea.postInvalidate();
+            labelSelector.showToTop();
+            drawArea.postInvalidate();
         });
         labelSelector.setOnClickListener(v -> {
             labelSelector.hide();
@@ -222,9 +226,8 @@ public class PhotoProcessActivity extends CameraBaseActivity {
         });
     }
 
-    //保存图片
     private void savePicture(){
-        //加滤镜
+
         final Bitmap newBitmap = Bitmap.createBitmap(mImageView.getWidth(), mImageView.getHeight(),
                 Bitmap.Config.ARGB_8888);
         Canvas cv = new Canvas(newBitmap);
@@ -235,18 +238,20 @@ public class PhotoProcessActivity extends CameraBaseActivity {
             e.printStackTrace();
             cv.drawBitmap(currentBitmap, null, dst, null);
         }
-        //加贴纸水印
+
         EffectUtil.applyOnSave(cv, mImageView);
 
         new SavePicToFileTask().execute(newBitmap);
+
     }
 
     private class SavePicToFileTask extends AsyncTask<Bitmap,Void,String>{
         Bitmap bitmap;
+
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            showProgressDialog("图片处理中...");
+            showProgressDialog("Processing...");
         }
 
         @Override
@@ -260,33 +265,31 @@ public class PhotoProcessActivity extends CameraBaseActivity {
 
             } catch (Exception e) {
                 e.printStackTrace();
-                toast("图片处理错误，请退出相机并重试", Toast.LENGTH_LONG);
             }
+
             return fileName;
         }
 
         @Override
         protected void onPostExecute(String fileName) {
             super.onPostExecute(fileName);
+
             dismissProgressDialog();
             if (StringUtils.isEmpty(fileName)) {
                 return;
             }
 
-            //将照片信息保存至sharedPreference
-            //保存标签信息
+
             List<TagItem> tagInfoList = new ArrayList<TagItem>();
             for (LabelView label : labels) {
                 tagInfoList.add(label.getTagInfo());
             }
 
-            //将图片信息通过EventBus发送到MainActivity
             FeedItem feedItem = new FeedItem(tagInfoList,fileName);
             EventBus.getDefault().post(feedItem);
             CameraManager.getInst().close();
         }
     }
-
 
     public void tagClick(View v){
         TextView textView = (TextView)v;
@@ -318,13 +321,13 @@ public class PhotoProcessActivity extends CameraBaseActivity {
             if (label.equals(emptyLabelView)) {
                 return;
             }
-            alert("温馨提示", "是否需要删除该标签！", "确定", new DialogInterface.OnClickListener() {
+            alert("", "", "", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     EffectUtil.removeLabelEditable(mImageView, drawArea, label);
                     labels.remove(label);
                 }
-            }, "取消", null);
+            }, "", null);
         }
     };
 
@@ -344,8 +347,6 @@ public class PhotoProcessActivity extends CameraBaseActivity {
         return true;
     }
 
-
-    //初始化贴图
     private void initStickerToolBar(){
 
         bottomToolBar.setAdapter(new StickerToolAdapter(PhotoProcessActivity.this, EffectUtil.addonList));
@@ -398,7 +399,7 @@ public class PhotoProcessActivity extends CameraBaseActivity {
         labelSelector.hide();
         emptyLabelView.setVisibility(View.INVISIBLE);
         if (labels.size() >= 5) {
-            alert("温馨提示", "您只能添加5个标签！", "确定", null, null, null, true);
+            alert("", "！", "", null, null, null, true);
         } else {
             int left = emptyLabelView.getLeft();
             int top = emptyLabelView.getTop();

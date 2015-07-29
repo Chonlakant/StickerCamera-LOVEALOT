@@ -11,9 +11,9 @@
         style="@style/head_default"
         app:leftBtnIcon="@drawable/back"
         app:rightBtnIcon="@drawable/next"
-        app:titleTxt="编辑相片"
-        app:leftBtnTxt="返回"
-        app:rightBtnTxt="下一步" />
+        app:titleTxt="Picture"
+        app:leftBtnTxt="Camera"
+        app:rightBtnTxt="OK" />
 
     <LinearLayout
         android:id="@+id/main_area"
@@ -56,7 +56,7 @@
     <LinearLayout
         android:id="@+id/btn_area"
         android:layout_width="fill_parent"
-        android:layout_height="50dp"
+        android:layout_height="60dp"
         android:background="#ff004a"
         android:orientation="horizontal" >
 
@@ -66,7 +66,7 @@
             android:layout_height="fill_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="贴纸"
+            android:text="Sticker"
             android:textColor="#d0beb9"
             android:textSize="22sp" />
 
@@ -76,7 +76,7 @@
             android:layout_height="fill_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="滤镜"
+            android:text="Filter"
             android:textColor="#d0beb9"
             android:textSize="22sp" />
 
@@ -86,7 +86,7 @@
             android:layout_height="fill_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="标签"
+            android:text="Tag"
             android:textColor="#d0beb9"
             android:textSize="22sp" />
     </LinearLayout>

@@ -178,7 +178,7 @@ public class CameraActivity extends CameraBaseActivity {
                 cameraInst.takePicture(null, null, new MyPictureCallback());
             } catch (Throwable t) {
                 t.printStackTrace();
-                toast("拍照失败，请重试！", Toast.LENGTH_LONG);
+
                 try {
                     cameraInst.startPreview();
                 } catch (Throwable e) {
@@ -369,7 +369,7 @@ public class CameraActivity extends CameraBaseActivity {
         private byte[] data;
 
         protected void onPreExecute() {
-            showProgressDialog("处理中");
+            showProgressDialog("Processing");
         }
 
         ;
@@ -397,7 +397,7 @@ public class CameraActivity extends CameraBaseActivity {
                     CameraManager.getInst().processPhotoItem(CameraActivity.this,
                             new PhotoItem(result, System.currentTimeMillis()));
             } else {
-                toast("拍照失败，请稍后重试！", Toast.LENGTH_LONG);
+
             }
         }
     }
@@ -833,7 +833,6 @@ public class CameraActivity extends CameraBaseActivity {
                 e.printStackTrace();
             }
         } else {
-            toast("切换失败，请重试！", Toast.LENGTH_LONG);
 
         }
     }

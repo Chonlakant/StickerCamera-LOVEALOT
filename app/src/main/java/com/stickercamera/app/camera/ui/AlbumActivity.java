@@ -1,6 +1,7 @@
 package com.stickercamera.app.camera.ui;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -17,6 +18,7 @@ import com.stickercamera.app.camera.fragment.AlbumFragment;
 import com.stickercamera.app.camera.util.Crop;
 import com.stickercamera.app.model.Album;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -50,6 +52,7 @@ public class AlbumActivity extends CameraBaseActivity {
         FragmentPagerAdapter adapter = new TabPageIndicatorAdapter(getSupportFragmentManager());
         pager.setAdapter(adapter);
         tab.setViewPager(pager);
+
     }
 
     @Override
@@ -78,7 +81,7 @@ public class AlbumActivity extends CameraBaseActivity {
 
         @Override
         public Fragment getItem(int position) {
-            //新建一个Fragment来展示ViewPager item的内容，并传递参数
+
             return AlbumFragment.newInstance(albums.get(paths.get(position)).getPhotos());
         }
 
@@ -87,7 +90,7 @@ public class AlbumActivity extends CameraBaseActivity {
             Album album = albums.get(paths.get(position % paths.size()));
             if (StringUtils.equalsIgnoreCase(FileUtils.getInst().getSystemPhotoPath(),
                     album.getAlbumUri())) {
-                return "胶卷相册";
+                return "Album";
             } else if (album.getTitle().length() > 13) {
                 return album.getTitle().substring(0, 11) + "...";
             }

@@ -86,7 +86,7 @@ public class CropPhotoActivity extends CameraBaseActivity {
         imageCenter.setOnClickListener(v -> wrapImage.setSelected(!wrapImage.isSelected()));
         findViewById(R.id.cancel).setOnClickListener(v -> finish());
         findViewById(R.id.picked).setOnClickListener(v -> {
-            showProgressDialog("图片处理中...");
+            showProgressDialog("Processing...");
             new Thread() {
                 public void run() {
                     if (btnCropType.isSelected()) {
@@ -95,7 +95,9 @@ public class CropPhotoActivity extends CameraBaseActivity {
                         cropImage();
                     }
                     dismissProgressDialog();
-                };
+                }
+
+                ;
             }.start();
         });
     }
@@ -170,13 +172,15 @@ public class CropPhotoActivity extends CameraBaseActivity {
                         + "/croppedcache"));
                 setResult(RESULT_OK, i);
                 dismissProgressDialog();
+
                 finish();
             } catch (Exception e) {
                 e.printStackTrace();
-                toast("裁剪图片异常，请稍后重试", Toast.LENGTH_LONG);
+                toast("Crop Image abnormalities，Please try again later", Toast.LENGTH_LONG);
             }
         }
     }
+
 
     @TargetApi(10)
     private Bitmap decodeRegionCrop(ImageViewTouch cropImage) {
